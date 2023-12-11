@@ -28,6 +28,21 @@ const Hero = () => {
         }
     }
 
+    const imgVariant = {
+        initial:{
+            x: 500,
+            opacity: 0,
+        },
+        animate:{
+            x: 0,
+            opacity: 1,
+            transition:{
+                duration: 1,
+                staggerChildren: 0.1,
+            }
+        },
+    }
+
     const sliderVariant = {
         initial:{
             x: 0,
@@ -58,7 +73,7 @@ const Hero = () => {
         <motion.div className="slidingTextContainer" variants={sliderVariant} initial="initial" animate="animate">
             CS Student Heriot-Watt University Class 2027
         </motion.div>
-        <motion.div className="imageContainer">
+        <motion.div className="imageContainer" variants={imgVariant} initial="initial" animate="animate">
             <img src="/hero.jpg" alt="" />
         </motion.div>
     </div>
