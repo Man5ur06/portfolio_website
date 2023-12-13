@@ -19,6 +19,14 @@
 
     .formContainer{
         flex: 1;
+        position: relative;
+
+        .atsvg{
+            stroke: #f2e3bc;
+            position: absolute;
+            margin: auto;
+        }
+
         form{
             display: flex;
             gap: 20px;
