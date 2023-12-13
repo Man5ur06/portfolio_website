@@ -1,6 +1,6 @@
 html{
+    scroll-snap-type: y proximity;
     scroll-behavior: smooth;
-    scroll-snap-type: y mandatory;
 }
 
 *{
@@ -19,6 +19,8 @@ a{
     text-decoration: none;
     color: inherit;
 }
+
+
 
 section{
     height: 100vh;
