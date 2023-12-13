@@ -1,6 +1,7 @@
-import { useRef } from "react"
+import { useRef, useState } from "react"
 import "./contact.scss"
 import { motion, useInView } from "framer-motion"   
+import emailjs from '@emailjs/browser';
 
 const variants = {
     initial:{
@@ -20,6 +21,22 @@ const variants = {
 const Contact = () => {
 
     const ref = useRef()
+    const formRef = useRef()
+    const [error, setError] = useState(false);
+    const [success, setSuccess] = useState(false);
+
+    const sendEmail = (e) => {
+        e.preventDefault();
+    
+        emailjs.sendForm('service_dyrc4fd', 'template_xbfq7jo', formRef.current, '_EWkn7otyeuklirYc')
+        .then((result) => {
+            setSuccess(true);
+            setError(false);
+        }, (error) => {
+            setSuccess(false);
+            setError(true);
+        });
+      };
 
     const isInView = useInView(ref, {margin:"-100px"})
 
@@ -41,7 +58,7 @@ const Contact = () => {
                 </motion.div>
             </motion.div>
             <div className="formContainer"> 
-                <motion.div className="atsvg" initial={{opacity:1,}} whileInView={{opacity:0}} transition={{delay:3, duration: 1}}>
+                <motion.div className="atsvg" initial={{opacity:1,}}  animate={isInView && {opacity:0}} transition={{delay:3, duration: 1}}>
                     <svg fill="none" height="450px" width="450px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
 	                    viewBox="0 0 378.632 378.632" xml:space="preserve" stroke="#f2e3bc">
                         <motion.path 
@@ -65,11 +82,13 @@ const Contact = () => {
                             c6.831,4.072,12.861,9.337,17.9,15.719c0.497,0.613,1.082,1.322,1.724,2.094c0.952,1.135,2.812,3.438,3.981,5.092V224.538z"/>
                     </svg>
                 </motion.div>
-                <motion.form initial={{opacity:0,}} whileInView={{opacity:1}} transition={{delay:4, duration: 1}}>
-                    <input type="text" required placeholder="Name"/>
-                    <input type="email" required placeholder="email"/>
-                    <textarea name="" rows="10" placeholder="Message"></textarea>
+                <motion.form onSubmit={sendEmail} ref={formRef} initial={{opacity:0}} whileInView={{opacity:1}} transition={{delay:4, duration: 1}}>
+                    <input type="text" required placeholder="Name" name="name"/>
+                    <input type="email" required placeholder="email" name="email"/>
+                    <textarea rows={10} placeholder="Message" name="message"/>
                     <button>Submit</button>
+                    {error && "Error"}
+                    {success && "Message submitted successfully!"}
                 </motion.form>
             </div>
         </motion.div>
