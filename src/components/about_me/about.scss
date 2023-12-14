@@ -1,3 +1,5 @@
+@import "../../App.scss";
+
 .about{
     display: flex;
     align-items: center;
@@ -13,6 +15,14 @@
         gap: 50px;
         align-items: center;
         justify-content: center;
+
+        @include mobile {
+            height: 50%;
+            width: 60%;
+            align-items: center;
+            text-align: center;
+            display: unset;
+        }
         
         
         .hero{
@@ -25,9 +35,21 @@
             flex-direction: column;
             margin: auto;
 
+            @include mobile{
+                margin-bottom: 50px;
+            }
+
             img{
                 margin: auto;
                 object-fit: cover;
+
+                @include mobile {
+                    height: 100%;
+                    width: 100%;
+                    top: unset;
+                    bottom: 0;
+                    
+                }
             }
         }
         
@@ -39,12 +61,24 @@
             font-weight: 300;
             gap: 30px;
 
+            @include mobile{
+                text-align: center;
+            }
+
             h2{
-                font-size: 52px
+                font-size: 52px;
+
+                @include mobile{
+                    font-size: 25px;
+                }
             }
 
             span{
                 font-size: 20px;
+
+                @include mobile{
+                    font-size: 10px;
+                }
             }
         }
     }
