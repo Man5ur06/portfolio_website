@@ -8,7 +8,7 @@ const items = [
         id: 1,
         title: "Project 1",
         img:"/p1.png",
-        desc:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam maiores expedita iste mollitia alias magnam quos neque fugit officiis, sequi sint in debitis unde autem placeat explicabo, perferendis deserunt itaque?",
+        desc:"Website for programming club @ HWU(KZ)",
     },    
     {
         id: 2,
@@ -34,7 +34,6 @@ const Sections = ({item}) =>{
     const ref = useRef()
     const {scrollYProgress} = useScroll({
         target: ref,
-         //offset:["start start", "end start"]
     })
 
     const y = useTransform(scrollYProgress, [0,1], [-300, 300] )
